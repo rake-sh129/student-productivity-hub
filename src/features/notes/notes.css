@@ -1,0 +1,254 @@
+/* =========================================
+   GLOBAL & ANIMATED BACKGROUND
+   ========================================= */
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+   body {
+     /* Smoothly shifting dark gradient background */
+     background: linear-gradient(-45deg, #0f172a, #2e1065, #1e3a8a, #020617);
+     background-size: 400% 400%;
+     animation: gradientBG 15s ease infinite;
+     font-family: 'Poppins', sans-serif;
+     min-height: 100vh;
+     margin: 0;
+     padding: 0;
+   }
+   
+   @keyframes gradientBG {
+     0% { background-position: 0% 50%; }
+     50% { background-position: 100% 50%; }
+     100% { background-position: 0% 50%; }
+   }
+   
+   /* =========================================
+      LAYOUT
+      ========================================= */
+   .notes-container {
+     max-width: 1000px;
+     margin: 0 auto;
+     padding: 40px 20px;
+     color: #ffffff;
+   }
+   
+   .notes-container h2 {
+     text-align: center;
+     margin-bottom: 35px;
+     font-size: 32px;
+     font-weight: 600;
+     letter-spacing: 1px;
+     /* Text gradient for the title */
+     background: linear-gradient(to right, #00f2fe, #4facfe, #f093fb);
+     background-clip: text;
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     text-shadow: 0px 4px 20px rgba(79, 172, 254, 0.3);
+   }
+   
+   /* =========================================
+      GLASS FORM (The Input Area)
+      ========================================= */
+   .notes-form {
+     display: flex;
+     flex-direction: column;
+     gap: 15px;
+     
+     /* Advanced Glassmorphism */
+     background: rgba(255, 255, 255, 0.03);
+     backdrop-filter: blur(16px);
+     -webkit-backdrop-filter: blur(16px);
+     
+     /* Directional light borders */
+     border: 1px solid rgba(255, 255, 255, 0.1);
+     border-top: 1px solid rgba(255, 255, 255, 0.2);
+     border-left: 1px solid rgba(255, 255, 255, 0.2);
+     border-radius: 20px;
+     
+     padding: 25px;
+     margin-bottom: 40px;
+     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+   }
+   
+   /* Inputs & Textareas */
+   .notes-form input,
+   .notes-form textarea {
+     background: rgba(0, 0, 0, 0.2);
+     border: 1px solid rgba(255, 255, 255, 0.1);
+     color: #fff;
+     padding: 15px;
+     border-radius: 12px;
+     outline: none;
+     font-size: 15px;
+     font-family: inherit;
+     transition: all 0.3s ease;
+   }
+   
+   .notes-form textarea {
+     min-height: 130px;
+     resize: vertical;
+   }
+   
+   .notes-form input::placeholder,
+   .notes-form textarea::placeholder {
+     color: rgba(255, 255, 255, 0.4);
+   }
+   
+   /* Glowing focus states */
+   .notes-form input:focus,
+   .notes-form textarea:focus {
+     border-color: rgba(79, 172, 254, 0.6);
+     box-shadow: 0 0 15px rgba(79, 172, 254, 0.2);
+     background: rgba(0, 0, 0, 0.4);
+   }
+   
+   /* Add Note Button */
+   .notes-form button {
+     background: linear-gradient(135deg, #667eea, #764ba2);
+     border: none;
+     padding: 14px;
+     border-radius: 12px;
+     color: white;
+     font-weight: 600;
+     font-size: 16px;
+     cursor: pointer;
+     letter-spacing: 0.5px;
+     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+     box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
+     margin-top: 5px;
+   }
+   
+   .notes-form button:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 8px 25px rgba(118, 75, 162, 0.6);
+     background: linear-gradient(135deg, #764ba2, #667eea);
+   }
+   
+   /* =========================================
+      GRID & GLASS CARDS (The Notes)
+      ========================================= */
+   .notes-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+     gap: 25px;
+   }
+   
+   /* Glass Card styling */
+   .note-card {
+     background: rgba(255, 255, 255, 0.05);
+     backdrop-filter: blur(12px);
+     -webkit-backdrop-filter: blur(12px);
+     
+     border: 1px solid rgba(255, 255, 255, 0.08);
+     border-top: 1px solid rgba(255, 255, 255, 0.15);
+     border-left: 1px solid rgba(255, 255, 255, 0.15);
+     border-radius: 16px;
+     
+     padding: 20px;
+     display: flex;
+     flex-direction: column;
+     gap: 12px;
+     
+     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+     position: relative;
+     overflow: hidden;
+   }
+   
+   /* Card Hover Glow */
+   .note-card:hover {
+     transform: translateY(-8px) scale(1.02);
+     box-shadow: 0 15px 40px rgba(79, 172, 254, 0.2);
+     border-color: rgba(255, 255, 255, 0.2);
+   }
+   
+   /* Note Typography */
+   .note-title {
+     font-size: 18px;
+     font-weight: 600;
+     color: #ffffff;
+     margin: 0;
+   }
+   
+   .note-content {
+     font-size: 14px;
+     line-height: 1.6;
+     color: rgba(255, 255, 255, 0.75);
+     white-space: pre-wrap;
+     flex-grow: 1; /* Pushes buttons to the bottom */
+     margin: 0;
+   }
+   
+   /* =========================================
+      CARD BUTTONS
+      ========================================= */
+   .note-actions {
+     display: flex;
+     justify-content: flex-end;
+     gap: 10px;
+     margin-top: 15px;
+     padding-top: 15px;
+     border-top: 1px solid rgba(255, 255, 255, 0.08);
+   }
+   
+   .edit-btn,
+   .delete-btn {
+     border: none;
+     padding: 8px 14px;
+     border-radius: 8px;
+     color: white;
+     cursor: pointer;
+     font-size: 12px;
+     font-weight: 600;
+     transition: all 0.2s ease;
+     backdrop-filter: blur(5px);
+   }
+   
+   .edit-btn {
+     background: rgba(59, 130, 246, 0.2);
+     border: 1px solid rgba(59, 130, 246, 0.5);
+     color: #93c5fd;
+   }
+   
+   .delete-btn {
+     background: rgba(239, 68, 68, 0.2);
+     border: 1px solid rgba(239, 68, 68, 0.5);
+     color: #fca5a5;
+   }
+   
+   .edit-btn:hover {
+     background: rgba(59, 130, 246, 0.6);
+     color: white;
+     transform: translateY(-2px);
+   }
+   
+   .delete-btn:hover {
+     background: rgba(239, 68, 68, 0.6);
+     color: white;
+     transform: translateY(-2px);
+   }
+   
+   /* =========================================
+      EMPTY STATE & CUSTOM SCROLLBARS
+      ========================================= */
+   .notes-grid p {
+     grid-column: 1 / -1;
+     text-align: center;
+     color: rgba(255, 255, 255, 0.5);
+     font-size: 16px;
+     font-style: italic;
+     padding: 20px;
+   }
+   
+   /* Custom Webkit Scrollbar to match the theme */
+   ::-webkit-scrollbar {
+     width: 10px;
+   }
+   ::-webkit-scrollbar-track {
+     background: #0f172a;
+   }
+   ::-webkit-scrollbar-thumb {
+     background: rgba(255, 255, 255, 0.2);
+     border-radius: 5px;
+   }
+   ::-webkit-scrollbar-thumb:hover {
+     background: rgba(255, 255, 255, 0.4);
+   }

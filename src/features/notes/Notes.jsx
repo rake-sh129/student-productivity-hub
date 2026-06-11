@@ -2,6 +2,9 @@ import { useEffect, useReducer, useState } from "react"
 import { notesReducer,initialState } from "./notesReducer"
 import { getNotes, saveNotes } from "./notesService"
 import { nanoid } from "nanoid";
+import NotesCard from "./NotesCard";
+import NotesForm from "./NotesForm";
+import './notes.css'
 
 
 const Notes = () => {
@@ -48,9 +51,8 @@ const Notes = () => {
         data:updateNote,
       },
     });
+    setEditingNote(null)
   };
-
-  setEditingNote(null);
 
   return (
     <div className="notes-container">
