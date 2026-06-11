@@ -1,5 +1,8 @@
-const Notes = () => {
-    return <h1>Notes Page 📝</h1>;
-  };
-  
-  export default Notes;
+import Notes from '../features/notes/Notes'
+
+
+const NotesPage = () => {
+  return <Notes />
+}
+
+export default NotesPage
