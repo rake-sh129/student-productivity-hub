@@ -1,23 +1,37 @@
-export const initialState = [];
+export const initialState ={
+    notes:[],
+};
 
 export function notesReducer(state, action) {
     switch(action.type){
         case 'SET_NOTES':{
-            return action.payload;
+            return {
+                ...state,
+                notes: action.payload
+            }
         }
 
         case 'ADD_NOTES':{
-            return [...state, action.payload];
+            return {
+                ...state,
+               notes: [...state.notes, action.payload]
+            }
         }
 
         case 'DELETE_NOTES':{
-            return state.filter(note => note.id !== action.payload);
+            return {
+                ...state,
+                notes: state.filter(note => note.id !== action.payload)
+            } 
         }
 
         case 'UPDATE_NOTES':{
-            return state.map(note => {
-                note.id === action.payload.id ? {...note, ...action.payload.data}:note
-            })
+            return {
+                ...state,
+                notes: state.notes.map((note) =>
+                  note.id === action.payload.id ? { ...note, ...action.payload.data }: note),
+            }
+
         }
         default:{
             return state;
