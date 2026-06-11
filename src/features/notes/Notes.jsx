@@ -1,87 +1,104 @@
-import { useEffect, useReducer, useState } from "react"
-import { notesReducer,initialState } from "./notesReducer"
-import { getNotes, saveNotes } from "./notesService"
+import { useEffect, useReducer, useState } from "react";
+import { notesReducer, initialState } from "./notesReducer";
+import { getNotes, saveNotes } from "./notesService";
 import { nanoid } from "nanoid";
 import NotesCard from "./NotesCard";
 import NotesForm from "./NotesForm";
-import './notes.css'
-
+import "./notes.css";
 
 const Notes = () => {
-  const [state,dispatch] = useReducer(notesReducer,initialState);
-  const {notes} = state;
+  const [state, dispatch] = useReducer(notesReducer, initialState);
+  const { notes } = state;
 
-  const [editingNote,setEditingNote] = useState(null);
+  const [editingNote, setEditingNote] = useState(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     const storedNotes = getNotes();
-    dispatch({type: "SET_NOTES", payload: storedNotes})
-  },[]);
+    dispatch({
+      type: "SET_NOTES",
+      payload: storedNotes,
+    });
+  }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     saveNotes(notes);
-  },[notes]);
+  }, [notes]);
 
-  const addNote = (note) =>{
+  const addNote = (note) => {
     dispatch({
       type: "ADD_NOTES",
-      payload:{
+      payload: {
         id: nanoid(),
         ...note,
-      }
+      },
     });
   };
 
-  const deleteNote= (id)=>{
+  const deleteNote = (id) => {
     dispatch({
-      type: 'DELETE_NOTES',
-      payload:id,
+      type: "DELETE_NOTES",
+      payload: id,
     });
   };
 
-  const startEdit =(note)=>{
+  const startEdit = (note) => {
     setEditingNote(note);
   };
 
-  const updateNote = (updateNote)=>{
+  const updateNote = (updatedNote) => {
     dispatch({
       type: "UPDATE_NOTES",
-      payload:{
-        id: updateNote.id,
-        data:updateNote,
+      payload: {
+        id: updatedNote.id,
+        data: updatedNote,
       },
     });
-    setEditingNote(null)
+
+    setEditingNote(null);
   };
 
   return (
-    <div className="notes-container">
-      <h2>📝 Notes System</h2>
+    <div className="notes-page-wrapper">
+      <div className="aurora-orb orb-1"></div>
+      <div className="aurora-orb orb-2"></div>
+      <div className="aurora-orb orb-3"></div>
 
-      {/* FORM */}
-      <NotesForm
-        addNote={addNote}
-        editingNote={editingNote}
-        updateNote={updateNote}
-      />
+      <div className="notes-container">
+        <div className="notes-header">
+          <h1 className="gradient-title">Notes</h1>
 
-      {/* NOTES LIST */}
-      <div className="notes-grid">
-        {notes.length === 0 ? (
-          <p>No notes found. Create your first note ✍️</p>
-        ) : (
-          notes.map((note) => (
-            <NotesCard
-              key={note.id}
-              note={note}
-              deleteNote={deleteNote}
-              startEdit={startEdit}
-            />
-          ))
-        )}
+          <p className="subtitle">
+            Capture ideas, organize thoughts, stay productive
+          </p>
+        </div>
+
+        <div className="add-note-wrapper">
+          <NotesForm
+            addNote={addNote}
+            editingNote={editingNote}
+            updateNote={updateNote}
+          />
+        </div>
+
+        <div className="notes-grid">
+          {notes.length === 0 ? (
+            <p className="subtitle">
+              No notes found. Create your first note ✍️
+            </p>
+          ) : (
+            notes.map((note) => (
+              <NotesCard
+                key={note.id}
+                note={note}
+                deleteNote={deleteNote}
+                startEdit={startEdit}
+              />
+            ))
+          )}
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Notes
+export default Notes;

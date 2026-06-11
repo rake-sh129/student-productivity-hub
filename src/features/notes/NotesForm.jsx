@@ -28,8 +28,9 @@ const NotesForm = ({ addNote, editingNote, updateNote }) => {
   };
 
   return (
-    <form className="notes-form" onSubmit={handleSubmit}>
+    <form className="add-note-form" onSubmit={handleSubmit}>
       <input
+        className="glass-input"
         type="text"
         placeholder="Note title..."
         value={title}
@@ -37,12 +38,13 @@ const NotesForm = ({ addNote, editingNote, updateNote }) => {
       />
 
       <textarea
+        className="glass-textarea"
         placeholder="Write your note..."
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
 
-      <button type="submit">
+      <button className="btn-add" type="submit">
         {editingNote ? "Update Note" : "Add Note"}
       </button>
     </form>
