@@ -1,5 +1,11 @@
+import TaskManager from "../features/tasks/TaskManager";
 const Tasks = () => {
-    return <h1>Tasks Page ✅</h1>;
+    return (
+      <div>
+        <h1>Task Page</h1>
+        <TaskManager />
+      </div>
+    );
   };
   
   export default Tasks;
