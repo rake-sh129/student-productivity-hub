@@ -1,8 +1,9 @@
 import { useState } from "react";
 
 const NotesForm = ({ addNote, editingNote, updateNote }) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  // Initialize state directly from the prop (it will recalculate whenever the key changes)
+  const [title, setTitle] = useState(editingNote ? editingNote.title : "");
+  const [content, setContent] = useState(editingNote ? editingNote.content : "");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,15 +23,14 @@ const NotesForm = ({ addNote, editingNote, updateNote }) => {
       });
     }
 
-    // reset form
+    // You can keep these to clear the form after creating a new note
     setTitle("");
     setContent("");
   };
 
   return (
-    <form className="add-note-form" onSubmit={handleSubmit}>
+    <form className="notes-form" onSubmit={handleSubmit}>
       <input
-        className="glass-input"
         type="text"
         placeholder="Note title..."
         value={title}
@@ -38,13 +38,12 @@ const NotesForm = ({ addNote, editingNote, updateNote }) => {
       />
 
       <textarea
-        className="glass-textarea"
         placeholder="Write your note..."
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
 
-      <button className="btn-add" type="submit">
+      <button type="submit">
         {editingNote ? "Update Note" : "Add Note"}
       </button>
     </form>

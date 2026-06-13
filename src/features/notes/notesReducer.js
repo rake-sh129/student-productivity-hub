@@ -1,3 +1,4 @@
+
 export const initialState = {
     notes: [],
   };
@@ -14,7 +15,8 @@ export const initialState = {
       case "ADD_NOTES": {
         return {
           ...state,
-          notes: [...state.notes, action.payload],
+          // Correctly appends the entire payload object (including the newly generated id)
+          notes: [...state.notes, action.payload], 
         };
       }
   

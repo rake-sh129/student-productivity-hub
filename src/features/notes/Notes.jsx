@@ -1,39 +1,46 @@
 import { useEffect, useReducer, useState } from "react";
+import {nanoid} from 'nanoid';
 import { notesReducer, initialState } from "./notesReducer";
 import { getNotes, saveNotes } from "./notesService";
-import { nanoid } from "nanoid";
-import NotesCard from "./NotesCard";
 import NotesForm from "./NotesForm";
+import NotesCard from "./NotesCard";
 import "./notes.css";
 
 const Notes = () => {
+  // 1. Reducer state (central state management)
   const [state, dispatch] = useReducer(notesReducer, initialState);
   const { notes } = state;
 
+  // 2. Local UI state (only for editing control)
   const [editingNote, setEditingNote] = useState(null);
 
+  // 3. Load notes from localStorage once when page opens
   useEffect(() => {
     const storedNotes = getNotes();
-    dispatch({
-      type: "SET_NOTES",
-      payload: storedNotes,
-    });
+    dispatch({ type: "SET_NOTES", payload: storedNotes });
   }, []);
 
+  // 4. Save notes to localStorage whenever notes change
   useEffect(() => {
     saveNotes(notes);
   }, [notes]);
 
+  // 5. ADD NOTE
   const addNote = (note) => {
+    const payload = {
+      id: nanoid(),
+      ...note,
+    };
+  
+    console.log("Dispatching:", payload);
+  
     dispatch({
       type: "ADD_NOTES",
-      payload: {
-        id: nanoid(),
-        ...note,
-      },
+      payload,
     });
   };
 
+  // 6. DELETE NOTE
   const deleteNote = (id) => {
     dispatch({
       type: "DELETE_NOTES",
@@ -41,10 +48,13 @@ const Notes = () => {
     });
   };
 
+  // 7. START EDIT MODE
   const startEdit = (note) => {
+    console.log("startEdit called:", note);
     setEditingNote(note);
   };
 
+  // 8. UPDATE NOTE
   const updateNote = (updatedNote) => {
     dispatch({
       type: "UPDATE_NOTES",
@@ -58,44 +68,31 @@ const Notes = () => {
   };
 
   return (
-    <div className="notes-page-wrapper">
-      <div className="aurora-orb orb-1"></div>
-      <div className="aurora-orb orb-2"></div>
-      <div className="aurora-orb orb-3"></div>
+    <div className="notes-container">
+      <h2>📝 Notes System</h2>
 
-      <div className="notes-container">
-        <div className="notes-header">
-          <h1 className="gradient-title">Notes</h1>
+     {/* FORM */}
+     <NotesForm
+        key={editingNote ? editingNote.id : "new-note"} 
+        addNote={addNote}
+        editingNote={editingNote}
+        updateNote={updateNote}
+      />
 
-          <p className="subtitle">
-            Capture ideas, organize thoughts, stay productive
-          </p>
-        </div>
-
-        <div className="add-note-wrapper">
-          <NotesForm
-            addNote={addNote}
-            editingNote={editingNote}
-            updateNote={updateNote}
-          />
-        </div>
-
-        <div className="notes-grid">
-          {notes.length === 0 ? (
-            <p className="subtitle">
-              No notes found. Create your first note ✍️
-            </p>
-          ) : (
-            notes.map((note) => (
-              <NotesCard
-                key={note.id}
-                note={note}
-                deleteNote={deleteNote}
-                startEdit={startEdit}
-              />
-            ))
-          )}
-        </div>
+      {/* NOTES LIST */}
+      <div className="notes-grid">
+        {notes.length === 0 ? (
+          <p>No notes found. Create your first note ✍️</p>
+        ) : (
+          notes.map((note) => (
+            <NotesCard
+              key={note.id}
+              note={note}
+              deleteNote={deleteNote}
+              startEdit={startEdit}
+            />
+          ))
+        )}
       </div>
     </div>
   );
