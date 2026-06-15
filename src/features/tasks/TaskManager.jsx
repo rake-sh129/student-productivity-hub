@@ -1,6 +1,7 @@
 import { useReducer, useState } from "react";
 import { taskReducer } from "./taskReducer";
 import { nanoid } from "nanoid";
+import '../../styles/taskManager.css'
 
 const TaskManager = () => {
   const [task, dispatch] = useReducer(taskReducer, []);
@@ -35,32 +36,29 @@ const TaskManager = () => {
   };
 
   return (
-    <div>
+    <div className="task-manager">
       <h2>Task Manager</h2>
-
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Enter Task"
-      />
-
-      <button onClick={addTask}>Add Task</button>
-
-      <ul>
+  
+      <div className="task-input">
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Enter Task"
+        />
+        <button onClick={addTask}>Add</button>
+      </div>
+  
+      <ul className="task-list">
         {task.map((task) => (
-          <li key={task.id}>
+          <li className="task-item" key={task.id}>
             <span
+              className={`task-text ${task.completed ? "completed" : ""}`}
               onClick={() => toggleTask(task.id)}
-              style={{
-                textDecoration: task.completed ? "line-through" : "none",
-                cursor: "pointer",
-              }}
             >
               {task.text}
             </span>
-
-            <button onClick={() => deleteTask(task.id)}>
+  
+            <button className="delete-btn" onClick={() => deleteTask(task.id)}>
               Delete
             </button>
           </li>
