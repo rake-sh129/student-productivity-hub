@@ -1,6 +1,7 @@
 import {Routes ,Route } from "react-router-dom";
 
-import Home from "../pages/Home";
+import MainLayout from "../components/layout/MainLayout";
+import Habits from "../pages/Habits";
 import Dashboard from "../pages/Dashboard";
 import Notes from "../pages/Notes";
 import Tasks from "../pages/Tasks";
@@ -13,8 +14,9 @@ import NotFound from "../pages/NotFound";
 const AppRoutes = () => {
   return (
     <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="dashboard" element={<Dashboard />} />
+      <Route element={<MainLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="habits" element={<Habits />} />
         <Route path="notes" element={<Notes />} />
         <Route path="tasks" element={<Tasks />} />
         <Route path="pomodoro" element={<Pomodoro />} />
@@ -22,10 +24,13 @@ const AppRoutes = () => {
         <Route path="calendar" element={<Calendar />} />
         <Route path="analytics" element={<Analytics />} />
         <Route path="*" element={<NotFound />} />
+      </Route>
     </Routes>
-  )
-}
+  );
+};
 
-export default AppRoutes
+export default AppRoutes;
+
+
 
 
