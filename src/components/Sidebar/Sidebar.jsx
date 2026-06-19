@@ -16,11 +16,15 @@ const Sidebar = () => {
 
             <NavLink to="habits" >Habits </NavLink>
 
+            <NavLink to="goals" >Goals </NavLink>
+
+
+            <NavLink to="resources" >Resources </NavLink>
+
             <NavLink to="analytics" >Analytics </NavLink>
 
             <NavLink to="calendar" >Calendar </NavLink>
 
-            <NavLink to="goals" >Goals </NavLink>
 
         </aside>
       
