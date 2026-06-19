@@ -18,7 +18,6 @@ const Sidebar = () => {
 
             <NavLink to="goals" >Goals </NavLink>
 
-
             <NavLink to="resources" >Resources </NavLink>
 
             <NavLink to="analytics" >Analytics </NavLink>
