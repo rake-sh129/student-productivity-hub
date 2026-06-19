@@ -23,6 +23,8 @@ const Sidebar = () => {
 
             <NavLink to="analytics" >Analytics </NavLink>
 
+            <NavLink to="achievement" >Achievement </NavLink>
+
             <NavLink to="calendar" >Calendar </NavLink>
 
 

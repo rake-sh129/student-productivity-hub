@@ -10,6 +10,7 @@ import Goals from "../pages/Goals";
 import Resources from "../pages/Resources";
 import Calendar from "../pages/Calendar"
 import Analytics from "../pages/Analytics";
+import Achievement from "../pages/Achievement";
 import NotFound from "../pages/NotFound";
 
 const AppRoutes = () => {
@@ -25,6 +26,7 @@ const AppRoutes = () => {
         <Route path="resources" element={<Resources />} />
         <Route path="calendar" element={<Calendar />} />
         <Route path="analytics" element={<Analytics />} />
+        <Route path="achievement" element={<Achievement />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
