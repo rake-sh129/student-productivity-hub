@@ -14,13 +14,14 @@ const Sidebar = () => {
 
             <NavLink to="pomodoro" >Pomodoro </NavLink>
 
+            <NavLink to="habits" >Habits </NavLink>
+
             <NavLink to="analytics" >Analytics </NavLink>
 
             <NavLink to="calendar" >Calendar </NavLink>
 
             <NavLink to="goals" >Goals </NavLink>
 
-            <NavLink to="home" >Home </NavLink>
         </aside>
       
     </div>

@@ -1,11 +1,7 @@
+import HabitsMain from "../features/habits/Habits"
 
-
-const Habits = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+const HabitsPage = () => {
+  return <HabitsMain/>
 }
 
-export default Habits
+export default HabitsPage
