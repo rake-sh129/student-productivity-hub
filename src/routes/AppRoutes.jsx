@@ -4,7 +4,7 @@ import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import Notes from "../pages/Notes";
 import Tasks from "../pages/Tasks";
-import Pomodoro from "../pages/Pomodoro";
+import Pomodoro from "../components/pomodoro/Pomodoro";
 import Goals from "../pages/Goals";
 import Calendar from "../pages/Calendar"
 import Analytics from "../pages/Analytics";

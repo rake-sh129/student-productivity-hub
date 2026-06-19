@@ -1,5 +1,5 @@
 import AppRoutes from "./routes/AppRoutes";
-import Pomodoro from "./pages/Pomodoro";
+import Pomodoro from "./components/pomodoro/Pomodoro";
 
 const App = () => {
   return (
