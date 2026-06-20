@@ -5,7 +5,7 @@ import Habits from "../pages/Habits";
 import Dashboard from "../pages/Dashboard";
 import Notes from "../pages/Notes";
 import Tasks from "../pages/Tasks";
-import Pomodoro from "../components/pomodoro/Pomodoro";
+import Pomodoro from "../pages/Pomodoro";
 import Goals from "../pages/Goals";
 import Resources from "../pages/Resources";
 import Calendar from "../pages/Calendar"
