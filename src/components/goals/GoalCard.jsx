@@ -1,54 +1,92 @@
-export default function GoalCard({
-  goal,
-  onDelete,
-  onEdit,
-  onToggleComplete,
-}) {
-  const percentage =
-    (goal.currentProgress / goal.targetValue) * 100;
+import React, { useState } from 'react'
+
+
+const CATERGORY_THEMES = {
+  Study: {},
+  Health: {},
+  Career: {},
+  Personal: {}
+}
+
+
+
+const GoalCard = () => {
+
+  const {id, title, description, category, targetValue, currentProgress, deadline, completed} = goal;
+
+  const [exactProgress, setExactProgress] = useState(currentProgress);
+  const [isEditingExact, setIsEditingExact] = useState(false);
+
+  const percentage = targetValue > 0 ? Math.round((currentProgress / targetValue) * 100) : 0;
+  const clampedPercentage = Math.min(100, Math.max(0, percentage));
+
+
+  const isOverdue = !completed && deadline && new Date(deadline) < new Date();
+
+  const adjustProgress = (amount)=>{
+    const next =  Math.max(0, Math.min(targetValue, currentProgress + amount));
+    onUpdateProgress(id, next);
+    setExactProgress(next);
+  }
+
+  const handleSaveExactProgress = (e)=>{
+    e.preventDefault();
+    const parsed = Number(exactProgress);
+    if (!isNaN(parsed) && parsed >= 0 && parsed <= targetValue) {
+      onUpdateProgress(id, parsed);
+      setIsEditingExact(false);
+    } else {
+      setExactProgress(currentProgress);
+      setIsEditingExact(false);
+    }
+  }
 
   return (
     <div>
-      <h3>{goal.title}</h3>
-
-      <p>{goal.description}</p>
-
-      <p>
-        {goal.currentProgress} / {goal.targetValue}
-      </p>
 
       <div>
-        <div
-          style={{
-            width: `${percentage}%`,
-            height: "10px",
-            background: "green",
-          }}
-        />
+        <span></span>
       </div>
 
-      <button
-        onClick={() =>
-          onToggleComplete(goal.id)
-        }
-      >
-        Complete
-      </button>
+      <div>
+        <button onClick={()=> onEdit(goal)}
+          title="Edit Goal"
+          >Edit Goal</button>
+        <button onClick={()=>{
+          if(window.confirm(`Delete the goal "${title}"?`)){
+            onDelete(id);
+          }
+          title= "Delete Goal"
+        }}>Delete Goal</button>
+      </div>
 
-      <button
-        onClick={() => onEdit(goal)}
-      >
-        Edit
-      </button>
+      <div>
+        <h3>Title</h3>
+        <p>Description</p>
+      </div>
 
-      <button
-        onClick={() =>
-          onDelete(goal.id)
-        }
-      >
-        Delete
-      </button>
+      <div>
+        <div>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div>
+          <div></div>
+
+          <form action="">
+            <input type="text" />
+            <button>Ok</button>
+          </form>
+        </div>
+      </div>
+
+      <button></button>
+      
     </div>
-  );
+  )
 }
+
+export default GoalCard
+
        
