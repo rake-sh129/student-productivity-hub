@@ -1,9 +1,6 @@
 import { useState } from "react";
 
-export default function GoalForm({
-  isOpen,
-  onClose,
-}) {
+export default function GoalForm({isOpen, onClose,}) {
   const [title, setTitle] = useState("");
 
   if (!isOpen) return null;
