@@ -1,5 +1,5 @@
 
-import React from 'react'
+
 
 const TimerControls = ({ isRunning, onStart, onPause, onReset,}) => {
   return (

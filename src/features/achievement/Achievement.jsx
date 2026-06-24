@@ -134,7 +134,7 @@ const Achievements = ({
             {badges.map((b, index) => (
               <div
                 key={index}
-                className="p-4 border rounded-lg bg-gradient-to-r from-indigo-50 to-purple-50"
+                className="p-4 border rounded-lg bg-linear-to-r from-indigo-50 to-purple-50"
               >
                 <h4 className="font-bold">{b.name}</h4>
                 <p className="text-sm text-gray-600">{b.desc}</p>

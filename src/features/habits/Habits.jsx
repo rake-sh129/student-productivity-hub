@@ -1,23 +1,24 @@
-import { useReducer } from "react";
+import { useSelector } from "react-redux";
 import HabitCard from "./HabitsCard";
 import HabitForm from "./HabitsForm";
 import HabitStats from "./HabitsStats";
 import WeeklyTracker from "./WeeklyTracker";
-import { habitsReducer, initialState } from "./habitsReducer";
 
 const Habits = () => {
-  const [state, dispatch] = useReducer(habitsReducer, initialState);
+  const { habits } = useSelector((state) => state.habits);
 
   return (
     <div>
       <h1>Habits Tracker</h1>
-      <HabitForm dispatch={dispatch} />
-      <HabitStats habits={state.habits} />
+
+      <HabitForm />
+
+      <HabitStats habits={habits} />
 
       <div>
-        {state.habits.map((habit) => (
+        {habits.map((habit) => (
           <div key={habit.id}>
-            <HabitCard habit={habit} dispatch={dispatch} />
+            <HabitCard habit={habit} />
             <WeeklyTracker habit={habit} />
           </div>
         ))}

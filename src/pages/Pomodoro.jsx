@@ -1,5 +1,5 @@
 
-import Pomodoro from '../components/pomodoro/Pomodoro'
+import Pomodoro from '../features/pomodoro/Pomodoro'
 
 const PomodoroPage = () => {
   return (
