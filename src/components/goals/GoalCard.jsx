@@ -10,7 +10,7 @@ const CATERGORY_THEMES = {
 
 
 
-const GoalCard = () => {
+const GoalCard = ({goal, onEdit, onDelete, onToggleComplete, onUpdateProgress}) => {
 
   const {id, title, description, category, targetValue, currentProgress, deadline, completed} = goal;
 
@@ -45,7 +45,7 @@ const GoalCard = () => {
     <div>
 
       <div>
-        <span></span>
+        <span>{category}</span>
       </div>
 
       <div>
@@ -67,7 +67,7 @@ const GoalCard = () => {
 
       <div>
         <div>
-          <span></span>
+          <span>Progress</span>
           <span></span>
         </div>
 

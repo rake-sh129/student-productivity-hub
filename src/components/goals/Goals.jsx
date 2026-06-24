@@ -1,10 +1,28 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useState } from 'react'
 import GoalCard from './GoalCard';
 import {GoalReducer, getInitialState, ACTIONS} from './GoalReducer';
 
 
 const Goals = () => {
   const [goals, dispatch]= useReducer(null, getInitialState);
+
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [editingGoal, setEditingGoal] = useState(null);
+
+  const totalCount = goals.length;
+  const completedCount = goals.filter(g=> g/completed).length;
+  const activeCount = totalCount - completedCount;
+  const successPercentage = totalCount > 0? Math.round((completedCount / totalCount) * 100) : 0;
+
+  const handleSaveGoal = (goalData) =>{
+    if(editingGoal) {
+      dispatch({type: ACTIONS.EDIT_GOAL, payload: goalData});
+    } else{
+      dispatch({type: ACTIONS.ADD_GOAL, payload: goalData});
+    }
+    setIsFormOpen(false);
+    setEditingGoal(null);
+  }
 
   return (
     <div>
@@ -40,7 +58,8 @@ const Goals = () => {
         </div>
 
         <div>
-          <div></div>
+          <div>
+          </div>
 
           <div>
             <div></div>
