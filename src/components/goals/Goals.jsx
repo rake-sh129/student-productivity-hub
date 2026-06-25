@@ -1,6 +1,8 @@
 import React, { useReducer, useState } from 'react'
 import GoalCard from './GoalCard';
+import GoalForm from './GoalForm';
 import {GoalReducer, getInitialState, ACTIONS} from './GoalReducer';
+import { Plus, Search, BarChart, CheckCircle, Clock, Activity, Sparkles, Compass, GraduationCap} from 'lucide-react';
 
 
 const Goals = () => {
@@ -90,6 +92,18 @@ const Goals = () => {
 
         <div></div>
       </div>
+
+      {
+        isFormOpen && (
+          <GoalForm
+          goal={editingGoal}
+          onSubmit={handleSaveGoal}
+          onClose={()=>{
+            setIsFormOpen(false);
+            setEditingGoal(null);
+          }}/>
+        )
+      }
       
     </div>
   )
