@@ -86,9 +86,18 @@ const GoalReducer = (state, action) => {
             });
             break;
 
-        default: return state;
+        default: 
+        return state;
 
     }
+
+      try {
+      localStorage.setItem('student_goals_hub', JSON.stringify(nextState));
+      } catch (error) {
+      console.warn('Storage sync failed:', error);
+    }
+
+  return nextState;
 }
 
 export {GoalReducer, getInitialState, ACTIONS}
