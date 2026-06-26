@@ -10,10 +10,10 @@ const ACTIONS = {
 
 const getInitialState = ()=>{
     try{
-        const saved = localStorage.getItem('');
+        const saved = localStorage.getItem('student_goals_hub');
         if(saved) return JSON.parse(saved);
     } catch(error){
-        console.log('Storage parse failed:', error)
+        console.log('Storage parse failed:', error);
     }
 
     return [
@@ -40,7 +40,7 @@ const getInitialState = ()=>{
     ]
 }
 
-const GoalReducer = (state, action) => {
+ function GoalReducer (state, action){
     let nextState;
 
     switch(action.type) {
@@ -66,7 +66,7 @@ const GoalReducer = (state, action) => {
                         ...item,
                         currentProgress: newProgress,
                         completed: newProgress >= item.targetValue
-                    }
+                    };
                 } 
                 return item;
             });
@@ -80,7 +80,7 @@ const GoalReducer = (state, action) => {
                         ...item,
                         completed: nextCompleted,
                         currentProgress: nextCompleted ? item.targetValue : 0
-                    }
+                    };
                 }
                 return item;
             });

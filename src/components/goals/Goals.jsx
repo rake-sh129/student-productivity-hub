@@ -3,10 +3,11 @@ import GoalCard from './GoalCard';
 import GoalForm from './GoalForm';
 import {GoalReducer, getInitialState, ACTIONS} from './GoalReducer';
 import { Plus, Search, BarChart, CheckCircle, Clock, Activity, Sparkles, Compass, GraduationCap} from 'lucide-react';
+import "./Goals.css";
 
 
 const Goals = () => {
-  const [goals, dispatch]= useReducer(null, getInitialState);
+  const [goals, dispatch]= useReducer(GoalReducer, null, getInitialState);
 
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingGoal, setEditingGoal] = useState(null);
@@ -78,73 +79,92 @@ const Goals = () => {
   }
 
   return (
-    <div>
-      <header>
-        <div>
-          <div>
-            <h1>Student Hub Goals</h1>
+    <div className='goals-container' id='student-goals-hub-container'>
+      <header className="goals-header" id="goals-main-header">
+        <div className="header-title-wrapper">
+          <div className="header-brand" id="goals-header-brand">
+            <GraduationCap/>
+            <h1 className="header-title">Student Hub Goals</h1>
           </div>
-          <p>Empower your learning journey. Formulate units, observe deadlines, and inspect active progress metrics.</p>
+          <p className="header-subtitle">Empower your learning journey. Formulate units, observe deadlines, and inspect active progress metrics.</p>
         </div>
 
 
-        <div>
-          <button type="button" onClick={generateInspirationalGoal}>
+        <div className="header-actions">
+          <button type="button" className="btn-secondary" onClick={generateInspirationalGoal} id="btn-generate-spark">
+            <Sparkles size={14} style={{ color: '#d97706' }} />
             <span>Generate Spark</span>
-
           </button>
 
-          <button type="button" onClick={()=>{
+          <button type="button" className="btn-primary" id="btn-new-goal" onClick={()=>{
             setEditingGoal(null);
             setIsFormOpen(true);
           }}>
+            <Plus size={14} />
             <span>New Goal</span>
           </button>
         </div>
       </header>
 
-      <section>
-        <div>
-          <div></div>
+      <section className="stats-grid" aria-label="Goals Summary Dashboard" id="goals-stats-dashboard">
+        <div className="stats-card" id="stats-total-card">
+          <div className="stats-icon-wrapper blue">
+            <Activity size={18} />
+          </div>
 
-          <div>
-            <div>{totalCount}</div>
-            <div>Total Goals</div>
+          <div className="stats-info">
+            <div className="stats-value">{totalCount}</div>
+            <div className="stats-label">Total Goals</div>
           </div>
         </div>
 
-        <div>
-          <div>
+        <div className="stats-card" id="stats-completed-card">
+          <div className="stats-icon-wrapper emerald">
+            <CheckCircle size={18} />
           </div>
 
-          <div>
-            <div>{completedCount}</div>
-            <div>Completed</div>
+          <div className="stats-info">
+            <div className="stats-value">{completedCount}</div>
+            <div className="stats-label">Completed</div>
           </div>
         </div>
 
 
-        <div>
-          <div></div>
+        <div className="stats-card" id="stats-progress-card">
+          <div className="stats-icon-wrapper amber">
+            <Clock size={18} />
+          </div>
 
-          <div>
-            <div>{activeCount}</div>
-            <div>In Progress</div>
+          <div className="stats-info">
+            <div className="stats-value">{activeCount}</div>
+            <div className="stats-label">In Progress</div>
           </div>
         </div>
       </section>
 
-        <div>
-          <button key={tab} type="button" onClick={()=> setStatusFilter(tab)}>{tab}</button>
-        </div>
+        <div className="filters-toolbar" id="goals-filters-toolbar">
+          <div className="status-tabs" id="goals-status-tabs">
+              {
+                ['All', 'In Progress', 'Completed', 'Overdue'].map((tab)=>(
+                  <button key={tab} type="button"
+                  className={`tab-btn ${statusFilter === tab ? 'active' : 'inactive'}`}
+                  onClick={()=> setStatusFilter(tab)}>
+                    {tab}
+                  </button>
+                ))
+              }
+          </div>
 
 
-        <div>
-          <div>
-              <input type="text" placeholder='Search goals...' value={searchQuery}
-              onChange={(e)=> setSearchQuery(e.target.value)} />
+          <div className="filter-inputs">
+            <div className="search-wrapper">
+              <Search size={13} className="search-icon" />
+              <input type="text" className="search-input" placeholder='Search goals...' value={searchQuery}
+              onChange={(e)=> setSearchQuery(e.target.value)} id="search-goals-input" />
+              </div>
 
-              <select value={selectedCategory} onChange={(e)=> setSelectedCategory(e.target.value)}>
+              <select className="category-select" value={selectedCategory} 
+              onChange={(e)=> setSelectedCategory(e.target.value)} id="category-filter-select">
                  <option value="All">All Categories</option>
                  <option value="Study">📚 Academic Tracks</option>
                  <option value="Health">🧘 Physical Wellness</option>
@@ -156,9 +176,10 @@ const Goals = () => {
 
          {
           filteredGoals.length > 0 ?(
-            <section>
+            <section className="goals-grid" id="goals-list-grid">
               {
                 filteredGoals.map((g)=>{
+                  return (
                   <GoalCard key={g.id}
                   goal={g}
                   onEdit={(goalToEdit) =>{
@@ -170,21 +191,25 @@ const Goals = () => {
                   onUpdateProgress={(id, progress) => dispatch({type: ACTIONS.UPDATE_PROGRESS, payload: {id, progress}})}>
 
                   </GoalCard>
+                  )
                 })
               }
             </section>
           ): (
-            <div>
-              <h3>No tracked items found</h3>
-              <p>
+            <div className="empty-state-card" id="goals-empty-state">
+              <div className="empty-state-icon">
+                <Compass size={28} />
+              </div>
+              <h3  className="empty-state-title">No tracked items found</h3>
+              <p className="empty-state-desc">
                 {
                   goals.length === 0? "You haven't setup any study goals yet! Formulate your first milestone to get started.":
                   "No goals match the active filter criteria. Try adjusting keywords or resetting filters."}
               </p>
-              <div>
+              <div className="empty-state-actions">
                 {
                   goals.length > 0 && (
-                    <button type="button" onClick={()=>{
+                    <button type="button" className="btn-secondary" id="btn-reset-filters" onClick={()=>{
                       setSearchQuery('');
                       setSelectedCategory('All');
                       setStatusFilter('All');
@@ -192,10 +217,10 @@ const Goals = () => {
                     </button>
                   )}
 
-                  <button type="button" onClick={()=>{
+                  <button type="button" className="btn-primary" id="btn-empty-create-goal" onClick={()=>{
                     setEditingGoal(null);
                     setIsFormOpen(true);
-                  }}>
+                  }}> <Plus size={12} />
                     <span>Create Goal</span>
                   </button>
               </div>
