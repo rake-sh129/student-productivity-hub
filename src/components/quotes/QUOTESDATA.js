@@ -171,7 +171,44 @@ const CURATED_QUOTES= [
 
 const THEMES = [
     {
-        id: "theme-sunshine"
+        id: "theme-sunshine",
+        name: "Sunshine Yellow",
+        bgClass: "bg-[#FFF275]",
+        borderColor: "border-black",
+        shadowColor: "rgba(255,74,28,1)",
+        pattern: "dots"
+    },
+    {
+      id: "theme-lilac",
+      name: "Lilac Pop",
+      bgClass: "bg-[#D8B4FE]",
+      borderColor: "border-black",
+      shadowColor: "rgba(0,0,0,1)",
+      pattern: "stars"
+    },
+    {
+      id: "theme-mint",
+      name: "Minty Teal",
+      bgClass: "bg-[#4ECDC4]",
+      borderColor: "border-black",
+      shadowColor: "rgba(255,230,109,1)",
+      pattern: "grid"
+    },
+    {
+      id: "theme-sunset",
+      name: "Peach Blush",
+      bgClass: "bg-[#FF8B94]",
+      borderColor: "border-black",
+      shadowColor: "rgba(0,209,255,1)",
+      pattern: "plain"
+    },
+    {
+      id: "theme-blueberry",
+      name: "Blue Bubble",
+      bgClass: "bg-[#00D1FF]",
+      borderColor: "border-black",
+      shadowColor: "rgba(255,74,28,1)",
+      pattern: "spiral"
     }
 ]
 
