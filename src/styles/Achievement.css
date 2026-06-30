@@ -1,0 +1,251 @@
+@import "tailwindcss";
+
+/* I have added this css file but since you have written inline tailwind in Achievement.jsx I cannot edit or touch those codes.
+Here are both the light theme and dark theme for the achievement section. */
+
+
+
+
+
+/* .achievements-container {
+  @apply p-8 bg-indigo-50/40 min-h-screen font-sans max-w-7xl mx-auto;
+}
+.achievements-heading {
+  @apply text-3xl font-black tracking-tight text-indigo-900 flex flex-col items-start mb-8;
+}
+.achievements-heading::after {
+  content: "Level 24 Master Archiver  •  78% to Level 25";
+  @apply text-xs font-bold text-indigo-600 uppercase tracking-widest mt-1.5;
+}
+
+
+.stats-grid {
+  @apply grid grid-cols-1 md:grid-cols-4 gap-6 mb-8;
+}
+
+
+.stat-card {
+  @apply bg-white p-5 rounded-[2rem] border-4 border-transparent cursor-pointer select-none transition-all duration-300 active:scale-95;
+}
+
+Card 1: Indigo Theme
+.stat-card:nth-child(1) { @apply shadow-lg shadow-indigo-100/50; }
+.stat-card:nth-child(1) .stat-label { @apply text-indigo-400; }
+.stat-card:nth-child(1):hover { @apply border-indigo-400 -translate-y-1.5 shadow-xl shadow-indigo-200/50; }
+
+Card 2: Rose Theme
+.stat-card:nth-child(2) { @apply shadow-lg shadow-rose-100/50; }
+.stat-card:nth-child(2) .stat-label { @apply text-rose-400; }
+.stat-card:nth-child(2):hover { @apply border-rose-400 -translate-y-1.5 shadow-xl shadow-rose-200/50; }
+
+Card 3: Orange Theme
+.stat-card:nth-child(3) { @apply shadow-lg shadow-orange-100/50; }
+.stat-card:nth-child(3) .stat-label { @apply text-orange-400; }
+.stat-card:nth-child(3):hover { @apply border-orange-400 -translate-y-1.5 shadow-xl shadow-orange-200/50; }
+
+Card 4: Emerald Theme
+.stat-card:nth-child(4) { @apply shadow-lg shadow-emerald-100/50; }
+.stat-card:nth-child(4) .stat-label { @apply text-emerald-400; }
+.stat-card:nth-child(4):hover { @apply border-emerald-400 -translate-y-1.5 shadow-xl shadow-emerald-200/50; }
+
+.stat-label {
+  @apply text-[10px] font-black uppercase tracking-wider mb-1;
+}
+.stat-value {
+  @apply text-3xl font-black text-indigo-900 leading-none;
+}
+
+Weekly Comparison Card (Immersive Indigo Dark Theme)
+.comparison-card {
+  @apply bg-indigo-950 p-6 md:p-8 rounded-[2.5rem] shadow-xl shadow-indigo-950/20 mb-8 border border-white/5;
+}
+.comparison-title {
+  @apply text-xl font-bold mb-6 text-white flex justify-between items-center;
+}
+.comparison-title::after {
+  content: "Last 7 Days";
+  @apply text-[10px] font-bold text-indigo-300 uppercase tracking-widest;
+}
+.comparison-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+.comparison-grid > div {
+  @apply bg-indigo-900/40 p-4 rounded-2xl border border-white/5 transition-all duration-200 hover:bg-indigo-900/60 hover:-translate-y-0.5;
+}
+.comparison-label {
+  @apply text-[10px] text-indigo-300 font-bold uppercase tracking-wider mb-1;
+}
+.comparison-change {
+  @apply text-2xl font-black;
+}
+.comparison-change.positive {
+  @apply text-emerald-300;
+}
+.comparison-change.negative {
+  @apply text-rose-300;
+}
+
+Badges Card & Items
+.badges-card {
+  @apply bg-white p-6 md:p-8 rounded-[2.5rem] shadow-xl shadow-indigo-100/40 border border-indigo-100/30;
+}
+.badges-title {
+  @apply text-xl font-black text-indigo-900 mb-5;
+}
+.no-badges-text {
+  @apply text-xs italic p-8 text-center bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200 text-gray-500;
+}
+.badges-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-4;
+}
+.badge-item {
+  @apply p-4 rounded-3xl transition-all duration-300 shadow-sm flex flex-col justify-center hover:scale-105 hover:-translate-y-1 hover:shadow-md;
+}
+
+Dynamic colors for Badges using nth-child
+.badge-item:nth-child(4n+1) { @apply bg-amber-50/70 border-2 border-amber-100/80; }
+.badge-item:nth-child(4n+1) .badge-name { @apply text-amber-900; }
+.badge-item:nth-child(4n+1) .badge-desc { @apply text-amber-700; }
+
+.badge-item:nth-child(4n+2) { @apply bg-cyan-50/70 border-2 border-cyan-100/80; }
+.badge-item:nth-child(4n+2) .badge-name { @apply text-cyan-900; }
+.badge-item:nth-child(4n+2) .badge-desc { @apply text-cyan-700; }
+
+.badge-item:nth-child(4n+3) { @apply bg-indigo-50/70 border-2 border-indigo-100/80; }
+.badge-item:nth-child(4n+3) .badge-name { @apply text-indigo-900; }
+.badge-item:nth-child(4n+3) .badge-desc { @apply text-indigo-700; }
+
+.badge-item:nth-child(4n) { @apply bg-emerald-50/70 border-2 border-emerald-100/80; }
+.badge-item:nth-child(4n) .badge-name { @apply text-emerald-900; }
+.badge-item:nth-child(4n) .badge-desc { @apply text-emerald-700; }
+
+.badge-name {
+  @apply font-black text-sm mb-1;
+}
+.badge-desc {
+  @apply text-[11px] font-semibold leading-normal;
+} */
+
+
+/* ---------------DARK THEME------------ */
+.achievements-container {
+  @apply p-8 bg-indigo-950 min-h-screen font-sans max-w-7xl mx-auto;
+}
+
+/* Heading with CSS level indicator subtitle */
+.achievements-heading {
+  @apply text-3xl font-black tracking-tight text-indigo-50 flex flex-col items-start mb-8;
+}
+.achievements-heading::after {
+  content: "Level 24 Master Archiver  •  78% to Level 25";
+  @apply text-xs font-semibold text-indigo-400 uppercase tracking-widest mt-1.5;
+}
+
+/* Grid Layouts */
+.stats-grid {
+  @apply grid grid-cols-1 md:grid-cols-4 gap-6 mb-8;
+}
+
+/* Stat Cards & Hover Interactions */
+.stat-card {
+  @apply bg-indigo-900/30 p-5 rounded-[2rem] border-4 border-transparent cursor-pointer select-none transition-all duration-300 active:scale-95;
+}
+
+/* Card 1: Indigo Theme */
+.stat-card:nth-child(1) { @apply shadow-lg shadow-indigo-950/40; }
+.stat-card:nth-child(1) .stat-label { @apply text-indigo-300; }
+.stat-card:nth-child(1):hover { @apply border-indigo-500/50 -translate-y-1.5 shadow-xl shadow-indigo-500/20 bg-indigo-900/50; }
+
+/* Card 2: Rose Theme */
+.stat-card:nth-child(2) { @apply shadow-lg shadow-indigo-950/40; }
+.stat-card:nth-child(2) .stat-label { @apply text-rose-300; }
+.stat-card:nth-child(2):hover { @apply border-rose-500/50 -translate-y-1.5 shadow-xl shadow-rose-500/20 bg-indigo-900/50; }
+
+/* Card 3: Orange Theme */
+.stat-card:nth-child(3) { @apply shadow-lg shadow-indigo-950/40; }
+.stat-card:nth-child(3) .stat-label { @apply text-orange-300; }
+.stat-card:nth-child(3):hover { @apply border-orange-500/50 -translate-y-1.5 shadow-xl shadow-orange-500/20 bg-indigo-900/50; }
+
+/* Card 4: Emerald Theme */
+.stat-card:nth-child(4) { @apply shadow-lg shadow-indigo-950/40; }
+.stat-card:nth-child(4) .stat-label { @apply text-emerald-300; }
+.stat-card:nth-child(4):hover { @apply border-emerald-500/50 -translate-y-1.5 shadow-xl shadow-emerald-500/20 bg-indigo-900/50; }
+
+.stat-label {
+  @apply text-[10px] font-black uppercase tracking-wider mb-1;
+}
+.stat-value {
+  @apply text-3xl font-black text-white leading-none;
+}
+
+/* Weekly Comparison Card (Immersive Indigo Dark Theme) */
+.comparison-card {
+  @apply bg-indigo-900/20 p-6 md:p-8 rounded-[2.5rem] shadow-xl shadow-indigo-950/40 mb-8 border border-white/5;
+}
+.comparison-title {
+  @apply text-xl font-bold mb-6 text-indigo-50 flex justify-between items-center;
+}
+.comparison-title::after {
+  content: "Last 7 Days";
+  @apply text-[10px] font-bold text-indigo-400 uppercase tracking-widest;
+}
+.comparison-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+.comparison-grid > div {
+  @apply bg-indigo-900/40 p-4 rounded-2xl border border-white/5 transition-all duration-200 hover:bg-indigo-900/60 hover:-translate-y-0.5;
+}
+.comparison-label {
+  @apply text-[10px] text-indigo-300 font-bold uppercase tracking-wider mb-1;
+}
+.comparison-change {
+  @apply text-2xl font-black;
+}
+.comparison-change.positive {
+  @apply text-emerald-400;
+}
+.comparison-change.negative {
+  @apply text-rose-400;
+}
+
+/* Badges Card & Items */
+.badges-card {
+  @apply bg-indigo-900/20 p-6 md:p-8 rounded-[2.5rem] shadow-xl shadow-indigo-950/40 border border-white/5;
+}
+.badges-title {
+  @apply text-xl font-black text-indigo-50 mb-5;
+}
+.no-badges-text {
+  @apply text-xs italic p-8 text-center bg-indigo-950/40 rounded-2xl border-2 border-dashed border-indigo-900/60 text-indigo-300;
+}
+.badges-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-4;
+}
+.badge-item {
+  @apply p-4 rounded-3xl transition-all duration-300 shadow-sm flex flex-col justify-center hover:scale-105 hover:-translate-y-1 hover:shadow-lg;
+}
+
+/* Dynamic dark colors for Badges using nth-child */
+.badge-item:nth-child(4n+1) { @apply bg-amber-950/40 border border-amber-900/50 hover:bg-amber-950/60 hover:border-amber-500/50; }
+.badge-item:nth-child(4n+1) .badge-name { @apply text-amber-200; }
+.badge-item:nth-child(4n+1) .badge-desc { @apply text-amber-300/80; }
+
+.badge-item:nth-child(4n+2) { @apply bg-cyan-950/40 border border-cyan-900/50 hover:bg-cyan-950/60 hover:border-cyan-500/50; }
+.badge-item:nth-child(4n+2) .badge-name { @apply text-cyan-200; }
+.badge-item:nth-child(4n+2) .badge-desc { @apply text-cyan-300/80; }
+
+.badge-item:nth-child(4n+3) { @apply bg-indigo-900/40 border border-indigo-800/50 hover:bg-indigo-900/60 hover:border-indigo-400/50; }
+.badge-item:nth-child(4n+3) .badge-name { @apply text-indigo-200; }
+.badge-item:nth-child(4n+3) .badge-desc { @apply text-indigo-300/80; }
+
+.badge-item:nth-child(4n) { @apply bg-emerald-950/40 border border-emerald-900/50 hover:bg-emerald-950/60 hover:border-emerald-500/50; }
+.badge-item:nth-child(4n) .badge-name { @apply text-emerald-200; }
+.badge-item:nth-child(4n) .badge-desc { @apply text-emerald-300/80; }
+
+.badge-name {
+  @apply font-black text-sm mb-1;
+}
+.badge-desc {
+  @apply text-[11px] font-medium leading-normal;
+}
+

@@ -1,15 +1,24 @@
 @import "tailwindcss";
 
-:root {
-  --habits-bg: linear-gradient(180deg, #f8fafc 0%, #eefbf5 45%, #f8fafc 100%);
-  --surface: rgba(255, 255, 255, 0.78);
-  --surface-strong: rgba(255, 255, 255, 0.92);
-  --surface-soft: rgba(248, 250, 252, 0.82);
-  --border: rgba(148, 163, 184, 0.18);
-  --border-strong: rgba(148, 163, 184, 0.3);
+/* Here too since you have written inline tailwind in HabitsForm and HabitsTip I cannot change the color of input and the Daily
+Tip section. It is upto you to how to handle that particular area. And sorry the css got too long. Again here are both
+the light and dark theme.
+
+Nevermind I got that covered. The only thing that is left is Habit Stats becomes invisible during theme change.
+I don't know how that is not working but it is.*/
+
+
+
+/* :root {
+  --habits-bg: #f8fafc;
+  --surface: rgba(255, 255, 255, 0.8);
+  --surface-strong: #ffffff;
+  --surface-soft: rgba(248, 250, 252, 0.8);
+  --border: rgba(226, 232, 240, 0.6);
+  --border-strong: #e2e8f0;
   --text-main: #0f172a;
-  --text-soft: #475569;
-  --text-muted: #64748b;
+  --text-soft: #64748b;
+  --text-muted: #94a3b8;
   --accent: #10b981;
   --accent-dark: #059669;
   --accent-deep: #047857;
@@ -19,13 +28,13 @@
   --danger-bg: #fff1f2;
   --danger-text: #e11d48;
   --danger-border: rgba(225, 29, 72, 0.12);
-  --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.06);
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.03);
   --shadow-md: 0 18px 40px rgba(15, 23, 42, 0.08);
   --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.12);
-  --radius-sm: 0.9rem;
+  --radius-sm: 0.75rem;
   --radius-md: 1.2rem;
   --radius-lg: 1.6rem;
-  --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 *,
@@ -57,7 +66,7 @@
   left: -4rem;
   width: 18rem;
   height: 18rem;
-  background: rgba(16, 185, 129, 0.14);
+  background: rgba(16, 185, 129, 0.1);
 }
 
 .habits-page::after {
@@ -65,7 +74,7 @@
   top: 20%;
   width: 16rem;
   height: 16rem;
-  background: rgba(59, 130, 246, 0.1);
+  background: rgba(59, 130, 246, 0.05);
 }
 
 .habits-container {
@@ -84,17 +93,16 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 1.6rem 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 1.75rem;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.68));
+  background: rgba(255, 255, 255, 0.7);
   box-shadow: var(--shadow-md);
   backdrop-filter: blur(16px);
 }
 
 .habits-title {
-  font-size: clamp(2rem, 1.5rem + 1.4vw, 3rem);
-  line-height: 1.05;
+  font-size: clamp(1.8rem, 1.5rem + 1.2vw, 2.75rem);
+  line-height: 1.1;
   font-weight: 800;
   letter-spacing: -0.04em;
   color: var(--text-main);
@@ -102,9 +110,9 @@
 }
 
 .habits-subtitle {
-  margin-top: 0.45rem;
+  margin-top: 0.5rem;
   font-size: 0.98rem;
-  color: var(--text-muted);
+  color: var(--text-soft);
 }
 
 .habits-grid {
@@ -124,10 +132,11 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--surface);
-  padding: 1.35rem;
+  padding: 1.5rem;
   box-shadow: var(--shadow-sm);
   backdrop-filter: blur(18px);
   overflow: hidden;
+  transition: box-shadow var(--transition), border-color var(--transition);
 }
 
 .panel::before {
@@ -145,10 +154,11 @@
 .panel-title {
   position: relative;
   margin-bottom: 1rem;
-  font-size: 1.1rem;
+  font-size: 0.875rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--text-main);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-soft);
 }
 
 .stats-grid {
@@ -179,22 +189,24 @@
 
 .stat-card:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
 }
 
 .stat-label {
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--text-muted);
+  margin-bottom: 0.25rem;
 }
 
 .stat-value {
-  margin-top: 0.55rem;
-  font-size: clamp(1.5rem, 1.2rem + 0.8vw, 2rem);
-  font-weight: 800;
+  font-size: clamp(1.5rem, 1.25rem + 0.8vw, 2.25rem);
+  font-weight: 900;
   letter-spacing: -0.03em;
   color: var(--text-main);
+  line-height: 1;
 }
 
 .habit-form {
@@ -208,27 +220,22 @@
   min-height: 3.2rem;
   border: 1px solid var(--border-strong);
   border-radius: 1rem;
-  background: var(--surface-strong);
+  background: #f8fafc;
   padding: 0.9rem 1rem;
   font-size: 0.95rem;
   color: var(--text-main);
   outline: none;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  transition:
-    border-color var(--transition),
-    box-shadow var(--transition),
-    transform var(--transition);
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 .habit-input::placeholder {
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .habit-input:focus {
-  border-color: rgba(16, 185, 129, 0.55);
-  box-shadow:
-    0 0 0 4px rgba(16, 185, 129, 0.14),
-    0 10px 24px rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1), 0 4px 12px rgba(16, 185, 129, 0.05);
+  background: #ffffff;
 }
 
 .habit-button {
@@ -239,23 +246,19 @@
   gap: 0.5rem;
   border: none;
   border-radius: 1rem;
-  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  background: linear-gradient(135deg,  #10b981 0%, #059669 100%);
   padding: 0.85rem 1.35rem;
   font-size: 0.92rem;
   font-weight: 700;
   color: white;
   cursor: pointer;
-  box-shadow: 0 12px 24px rgba(5, 150, 105, 0.22);
-  transition:
-    transform var(--transition),
-    box-shadow var(--transition),
-    filter var(--transition);
+  box-shadow: 0 10px 20px rgba(16, 185, 129, 0.15);
+  transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
 }
 
 .habit-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 30px rgba(5, 150, 105, 0.26);
-  filter: saturate(1.05);
+  box-shadow: 0 14px 24px rgba(16, 185, 129, 0.22);
 }
 
 .habit-button:active {
@@ -271,20 +274,16 @@
 .habit-card {
   border: 1px solid var(--border);
   border-radius: 1.4rem;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 252, 0.86));
+  background:rgba(255, 255, 255, 0.8);
   padding: 1.25rem;
   box-shadow: var(--shadow-sm);
-  transition:
-    transform var(--transition),
-    box-shadow var(--transition),
-    border-color var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 
 .habit-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-  border-color: rgba(16, 185, 129, 0.22);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.04);
+  border-color: rgba(16, 185, 129, 0.25);
 }
 
 .habit-card-top {
@@ -298,11 +297,13 @@
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-main);
+  line-height: 1.2;
 }
 
 .habit-meta {
   margin-top: 0.3rem;
   font-size: 0.88rem;
+  font-weight: 500;
   color: var(--text-soft);
 }
 
@@ -314,41 +315,39 @@
 
 .habit-toggle-btn,
 .habit-delete-btn {
-  min-height: 2.75rem;
+  min-height: 2.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.9rem;
-  padding: 0.65rem 1rem;
-  font-size: 0.88rem;
+  gap: 0.35rem;
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   cursor: pointer;
-  transition:
-    transform var(--transition),
-    box-shadow var(--transition),
-    background var(--transition),
-    color var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
+
 }
 
 .habit-toggle-btn {
   border: none;
-  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
-  box-shadow: 0 10px 18px rgba(16, 185, 129, 0.18);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
 }
 
 .habit-toggle-btn:hover {
   transform: translateY(-1px);
-  background: linear-gradient(135deg, var(--accent-dark), var(--accent-deep));
+  box-shadow: 0 6px 14px rgba(16, 185, 129, 0.18);
 }
 
 .habit-toggle-btn.done {
-  background: linear-gradient(135deg, var(--warning), var(--warning-dark));
-  box-shadow: 0 10px 18px rgba(245, 158, 11, 0.18);
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1);
 }
 
 .habit-toggle-btn.done:hover {
-  background: linear-gradient(135deg, #f59e0b, #b45309);
+  box-shadow: 0 6px 14px rgba(245, 158, 11, 0.18);
 }
 
 .habit-delete-btn {
@@ -360,15 +359,15 @@
 .habit-delete-btn:hover {
   transform: translateY(-1px);
   background: #ffe4e6;
-  box-shadow: 0 10px 18px rgba(225, 29, 72, 0.08);
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.05);
 }
 
 .weekly-tracker {
-  margin-top: 1.1rem;
-  border: 1px solid rgba(226, 232, 240, 0.85);
-  border-radius: 1.2rem;
-  background: linear-gradient(180deg, #f8fafc, #f1f5f9);
-  padding: 1rem;
+  margin-top: 1.25rem;
+  border-radius: var(--radius-md);
+  background: rgba(248, 250, 252, 0.8);
+  padding: 1.15rem;
+  border: 1px solid rgba(226, 232, 240, 0.4);
 }
 
 .weekly-tracker-title {
@@ -392,64 +391,58 @@
   align-items: center;
   justify-content: center;
   min-height: 4.25rem;
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 0.75rem 0.35rem;
-  font-size: 0.76rem;
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.75rem 0.25rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  color: var(--text-muted);
-  transition:
-    transform var(--transition),
-    border-color var(--transition),
-    box-shadow var(--transition);
+  color: var(--text-soft);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .day-box:hover {
   transform: translateY(-2px);
-  border-color: rgba(16, 185, 129, 0.2);
-  box-shadow: var(--shadow-sm);
+  border-color: rgba(16, 185, 129, 0.25);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
 }
 
 .day-label {
-  margin-bottom: 0.35rem;
-  font-size: 0.68rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.625rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .day-status {
-  width: 0.9rem;
-  height: 0.9rem;
+  width: 1rem;
+  height: 1rem;
   border-radius: 9999px;
   background: #cbd5e1;
-  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.08);
+  transition: background-color var(--transition), box-shadow var(--transition);
 }
 
 .day-status.completed {
-  background: linear-gradient(135deg, #34d399, #10b981);
+  background-color: #10b981;
   box-shadow: 0 0 0 5px rgba(16, 185, 129, 0.12);
 }
 
 .empty-state {
-  border: 1.5px dashed rgba(148, 163, 184, 0.35);
-  border-radius: 1.4rem;
-  background:
-    radial-gradient(circle at top, rgba(16, 185, 129, 0.06), transparent 55%),
-    rgba(255, 255, 255, 0.72);
+  border: 2px dashed rgba(226, 232, 240, 0.8);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.5);
   padding: 3rem 1.5rem;
   text-align: center;
-  color: var(--text-muted);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  color: var(--text-soft);
 }
 
 .empty-state::before {
   content: "✨";
   display: block;
   margin-bottom: 0.75rem;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 @media (min-width: 640px) {
@@ -525,4 +518,479 @@
   .habits-title {
     font-size: 1.8rem;
   }
+} */
+
+
+/* -------DARK THEME------- */
+:root {
+  --habits-bg: #090e1a;
+  --surface: rgba(15, 23, 42, 0.65);
+  --surface-strong: #0f172a;
+  --surface-soft: rgba(30, 41, 59, 0.5);
+  --border: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --text-main: #f8fafc;
+  --text-soft: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #10b981;
+  --accent-dark: #34d399;
+  --accent-deep: #059669;
+  --accent-soft: rgba(16, 185, 129, 0.15);
+  --warning: #fbbf24;
+  --warning-dark: #f59e0b;
+  --danger-bg: rgba(244, 63, 94, 0.12);
+  --danger-text: #fda4af;
+  --danger-border: rgba(244, 63, 94, 0.25);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 16px 40px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
+  --radius-sm: 0.75rem;
+  --radius-md: 1.2rem;
+  --radius-lg: 1.6rem;
+  --transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.habits-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 1.5rem 1rem 3rem;
+  background: var(--habits-bg);
+  overflow-x: hidden;
+}
+
+.habits-page::before,
+.habits-page::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.habits-page::before {
+  top: -6rem;
+  left: -4rem;
+  width: 20rem;
+  height: 20rem;
+  background: rgba(16, 185, 129, 0.12);
+}
+
+.habits-page::after {
+  right: -5rem;
+  top: 20%;
+  width: 18rem;
+  height: 18rem;
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.habits-container {
+  position: relative;
+  z-index: 1;
+  max-width: 76rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.habits-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: 1.75rem;
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(16px);
+}
+
+.habits-title {
+  font-size: clamp(1.8rem, 1.5rem + 1.2vw, 2.75rem);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.habits-subtitle {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-soft);
+}
+
+.habits-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.habits-main,
+.habits-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.panel {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+
+.panel:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.panel-title {
+  position: relative;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+/* Stats Styling */
+.stats-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.stat-card {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.3) 0%, rgba(15, 23, 42, 0.5) 100%);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.stat-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #34d399, #10b981);
+  opacity: 0.95;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.stat-label {
+  font-size: 0.625rem; /* text-[10px] */
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.stat-value {
+  font-size: clamp(1.5rem, 1.25rem + 0.8vw, 2.25rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+/* Habit Form Styling */
+.habit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.habit-input {
+  width: 100%;
+  min-height: 3.2rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.6);
+  padding: 0.85rem 1.15rem;
+  font-size: 0.875rem;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.habit-input::placeholder {
+  color: var(--text-muted);
+}
+
+.habit-input:focus {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15), 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.habit-button {
+  min-height: 3.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  padding: 0.85rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(16, 185, 129, 0.15);
+  transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+}
+
+.habit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 24px rgba(16, 185, 129, 0.25);
+}
+
+.habit-button:active {
+  transform: translateY(0);
+}
+
+/* Habits List Styling */
+.habits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.habit-card {
+  border: 1px solid var(--border);
+  border-radius: 1.6rem;
+  background: rgba(15, 23, 42, 0.4);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.habit-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.habit-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.habit-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.habit-meta {
+  margin-top: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-soft);
+}
+
+.habit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.habit-toggle-btn,
+.habit-delete-btn {
+  min-height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem; /* ~13px */
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
+}
+
+.habit-toggle-btn {
+  border: none;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+.habit-toggle-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(16, 185, 129, 0.25);
+}
+
+.habit-toggle-btn.done {
+  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+}
+
+.habit-toggle-btn.done:hover {
+  box-shadow: 0 6px 14px rgba(245, 158, 11, 0.25);
+}
+
+.habit-delete-btn {
+  border: 1px solid var(--danger-border);
+  background: var(--danger-bg);
+  color: var(--danger-text);
+}
+
+.habit-delete-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(244, 63, 94, 0.18);
+  box-shadow: 0 4px 12px rgba(244, 63, 94, 0.1);
+}
+
+/* Weekly Tracker grid inside Habit Card */
+.weekly-tracker {
+  margin-top: 1.25rem;
+  border-radius: var(--radius-md);
+  background: rgba(15, 23, 42, 0.6);
+  padding: 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.weekly-tracker-title {
+  margin-bottom: 0.85rem;
+  font-size: 0.625rem; /* text-[10px] */
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.weekly-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.day-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+  background: rgba(15, 23, 42, 0.5);
+  padding: 0.75rem 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.day-box:hover {
+  transform: translateY(-2px);
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.day-label {
+  margin-bottom: 0.5rem;
+  font-size: 0.625rem; /* text-[10px] */
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.day-status {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  background-color: #334155;
+  transition: background-color var(--transition), box-shadow var(--transition);
+}
+
+.day-status.completed {
+  background-color: #10b981;
+  box-shadow: 0 0 0 5px rgba(16, 185, 129, 0.2);
+}
+
+/* Empty State Styling */
+.empty-state {
+  border: 2px dashed rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  background: rgba(15, 23, 42, 0.3);
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--text-soft);
+}
+
+.empty-state::before {
+  content: "✨";
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 2rem;
+}
+
+/* High-Contrast Maintenance Panel (Pro Insight Card look) */
+#actions-panel {
+  background: #0f172a;
+  color: #f8fafc;
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+#actions-panel .panel-title {
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#actions-panel .panel-title::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: #34d399;
+  animation: pulse 2s infinite;
+}
+
+#actions-panel .habit-delete-btn {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #e2e8f0;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+#actions-panel .habit-delete-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
 }

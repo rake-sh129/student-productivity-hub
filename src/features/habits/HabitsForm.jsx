@@ -24,7 +24,7 @@ const HabitForm = () => {
           placeholder="Enter a habit like Drink water or Read 20 mins"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          className="w-full rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-3.5 text-sm font-medium text-slate-700 shadow-[0_8px_24px_rgba(15,23,42,0.06)] outline-none transition duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
+          className="w-full rounded-2xl border border border-slate-800 bg-slate-950/80 text-slate-100 placeholder-slate-500 px-4 py-3.5 text-sm font-medium text-slate-700 shadow-[0_8px_24px_rgba(15,23,42,0.06)] outline-none transition duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
         />
       </div>
 

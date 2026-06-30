@@ -1,167 +1,241 @@
-/* ===== PAGE ===== */
+@import "tailwindcss";
 
 .pomodoro-page {
-  min-height: 100vh;
-  background: #f8fafc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+    @apply min-h-screen w-full flex flex-col justify-center items-center p-6 select-none antialiased relative overflow-hidden;
+    background: radial-gradient(circle at center, #1a1a2e 0%, #050505 100%);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 /* ===== CARD ===== */
 
 .pomodoro-card {
-  width: 100%;
-  max-width: 500px;
-  background: white;
-  border-radius: 40px;
-  padding: 40px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-  border: 1px solid #e2e8f0;
-  text-align: center;
+    @apply w-full max-w-md bg-white/2 rounded-[48px] p-12 text-center relative overflow-hidden transition-all duration-500 ease-out;
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+   z-index: 1;
+}
+.pomodoro-card:hover {
+    @apply border-white/12 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.6)];
+
 }
 
 /* ===== TITLE ===== */
-
 .pomodoro-title {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #64748b;
-  margin-bottom: 25px;
+    @apply text-xs font-bold tracking-[4px] uppercase mb-8 flex items-center justify-center gap-2;
+    color: rgba(255, 255, 255, 0.4);
+    @apply text-indigo-400 opacity-60;
 }
 
 /* ===== MODE BUTTONS ===== */
 
 .mode-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  background: #f1f5f9;
-  padding: 6px;
-  border-radius: 999px;
-  margin-bottom: 35px;
+    @apply inline-flex bg-white/5 p-1.5 rounded-[100px] mb-10 border border-white/5;
+
 }
 
 .mode-buttons button {
-  border: none;
-  background: transparent;
-  padding: 10px 18px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-weight: 600;
-  color: #64748b;
-  transition: 0.3s;
+    @apply border-none bg-transparent px-6 py-2.5 rounded-[100px] cursor-pointer text-sm font-semibold transition-all duration-300 ease-in-out focus:outline-hidden;
+    color: rgba(255, 255, 255, 0.5);
+
+}
+.mode-buttons button:hover{
+  color: rgba(255, 255, 255, 0.85);
+
 }
 
 .mode-buttons button.active {
-  background: #0f172a;
-  color: white;
+  @apply text-white;
+  background: #6366f1;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
 /* ===== TIMER ===== */
 
 .timer-container {
-  position: relative;
-  width: 280px;
-  height: 280px;
-  margin: auto;
+    @apply relative w-[280px] h-[280px] mx-auto my-6 flex items-center justify-center;
+
 }
 
 .timer-svg {
-  transform: rotate(-90deg);
+  @apply -rotate-90 w-full h-full absolute top-0 left-0;
 }
 
 .timer-text {
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 60px;
-  font-weight: 800;
-  color: #1e293b;
-  font-family: monospace;
+    @apply absolute inset-0 flex flex-col justify-center items-center;
+    @apply text-6xl font-light tracking-[-2px] text-white select-all leading-none;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-/* ===== CONTROLS ===== */
 
+/* ===== CONTROLS ===== */
 .controls {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 35px;
+    @apply flex justify-center items-center gap-6 mt-12;
+
 }
 
 .controls button {
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
+    @apply border-none cursor-pointer transition-all duration-300 ease-out focus:outline-hidden;
+
 }
 
 .controls button:hover {
-  transform: scale(1.05);
+    @apply scale-105 active:scale-95;
+
 }
 
 /* play pause */
-
 .main-btn {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: #4f46e5;
-  color: white;
-  font-size: 22px;
-  font-weight: bold;
+    @apply w-20 h-20 rounded-full bg-white text-black flex items-center justify-center shadow-lg transition-transform;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+.main-btn:hover{
+    @apply bg-slate-100 shadow-[0_12px_35px_rgba(255,255,255,0.3)];
+
 }
 
 /* reset */
-
 .reset-btn {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #f1f5f9;
-  color: #475569;
-  font-size: 22px;
+    @apply w-14 h-14 rounded-full bg-white/5 text-white flex items-center justify-center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* ===== STATS ===== */
-
 .stats {
-  margin-top: 30px;
+  @apply mt-10 pt-8 flex justify-around items-center gap-4;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .stats p {
-  margin: 10px 0;
-  color: #475569;
-  font-size: 15px;
+  @apply text-xs font-semibold m-0 uppercase tracking-wider flex items-center gap-1.5;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .stats strong {
-  color: #0f172a;
+  @apply block text-lg font-bold text-white mt-1;
 }
 
 /* ===== SESSION DOTS ===== */
 
 .session-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
+  @apply flex justify-center gap-2.5 mt-6;
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #cbd5e1;
+  @apply w-2.5 h-2.5 rounded-full transition-all duration-500 ease-out;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .dot.completed {
-  background: #4f46e5;
+  background: #6366f1;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
 }
+
+
+/* ----------Light Theme----------- */
+/* .pomodoro-page {
+  @apply min-h-screen w-full flex flex-col justify-center items-center p-6 select-none antialiased relative overflow-hidden;
+  background: radial-gradient(circle at center, #f5f8fc 0%, #e2e8f0 100%);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.pomodoro-card {
+  @apply w-full max-w-md rounded-[48px] p-12 text-center relative overflow-hidden transition-all duration-500 ease-out;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+  z-index: 1;
+}
+
+.pomodoro-card:hover {
+  @apply border-white/90 shadow-[0_30px_60px_-10px_rgba(15,23,42,0.12)];
+}
+
+.pomodoro-title {
+  @apply text-xs font-bold tracking-[4px] uppercase mb-8 flex items-center justify-center gap-2;
+  color: rgba(15, 23, 42, 0.45);
+}
+
+.pomodoro-title svg {
+  @apply text-indigo-500 opacity-70;
+}
+
+.mode-buttons {
+  @apply inline-flex bg-slate-200/40 p-1.5 rounded-[100px] mb-10 border border-slate-200/20;
+}
+
+.mode-buttons button {
+  @apply border-none bg-transparent px-6 py-2.5 rounded-[100px] cursor-pointer text-sm font-semibold transition-all duration-300 ease-in-out focus:outline-hidden;
+  color: rgba(15, 23, 42, 0.55);
+}
+
+.mode-buttons button:hover {
+  color: rgba(15, 23, 42, 0.85);
+}
+
+.mode-buttons button.active {
+  @apply text-white;
+  background: #6366f1;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+}
+
+.timer-container {
+  @apply relative w-[280px] h-[280px] mx-auto my-6 flex items-center justify-center;
+}
+
+.timer-text {
+  @apply absolute inset-0 flex flex-col justify-center items-center;
+  @apply text-6xl font-light tracking-[-2px] text-slate-800 select-all leading-none;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.controls {
+  @apply flex justify-center items-center gap-6 mt-12;
+}
+
+.controls button {
+  @apply border-none cursor-pointer transition-all duration-300 ease-out focus:outline-hidden;
+}
+
+.controls button:hover {
+  @apply scale-105 active:scale-95;
+}
+
+.main-btn {
+  @apply w-20 h-20 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-lg transition-transform;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2);
+}
+
+.main-btn:hover {
+  @apply bg-slate-800 shadow-[0_12px_30px_rgba(15,23,42,0.28)];
+}
+
+.reset-btn {
+  @apply w-14 h-14 rounded-full bg-slate-100/80 text-slate-600 flex items-center justify-center;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.stats {
+  @apply mt-10 pt-8 flex justify-around items-center gap-4;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.stats p {
+  @apply text-xs font-semibold m-0 uppercase tracking-wider flex items-center gap-1.5;
+  color: rgba(15, 23, 42, 0.5);
+}
+
+.stats strong {
+  @apply block text-lg font-bold text-slate-800 mt-1;
+}
+
+.dot {
+  @apply w-2.5 h-2.5 rounded-full transition-all duration-500 ease-out;
+  background: rgba(15, 23, 42, 0.08);
+}
+
+.dot.completed {
+  background: #6366f1;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+} */
