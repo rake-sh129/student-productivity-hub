@@ -21,7 +21,7 @@ const navItems = [
   { label: "Goals", path: "/goals", icon: Target },
   { label: "Resources", path: "/resources", icon: BookOpen },
   { label: "Achievement", path: "/achievement", icon: Trophy },
-  { label: "Calendar", path: "/calendar", icon: CalendarDays },
+  { label: "Settings", path: "/settings", icon: CalendarDays },
 ];
 
 const Sidebar = () => {

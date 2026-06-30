@@ -8,9 +8,9 @@ import Tasks from "../pages/Tasks";
 import Pomodoro from "../pages/Pomodoro";
 import Goals from "../pages/Goals";
 import Resources from "../pages/Resources";
-import Calendar from "../pages/Calendar"
 import Achievement from "../pages/Achievement";
 import NotFound from "../pages/NotFound";
+import Settings from "../features/settings section/Settings";
 
 const AppRoutes = () => {
   return (
@@ -23,8 +23,8 @@ const AppRoutes = () => {
         <Route path="habits" element={<Habits />} />
         <Route path="goals" element={<Goals />} />
         <Route path="resources" element={<Resources />} />
-        <Route path="calendar" element={<Calendar />} />
         <Route path="achievement" element={<Achievement />} />
+        <Route path="settings" element={<Settings />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
