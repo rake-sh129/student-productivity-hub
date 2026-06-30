@@ -4,22 +4,21 @@
   background: #f6f8fc;
 }
 
-.sidebar {
-  width: 260px;
-  min-width: 260px;
-  min-height: calc(100vh - 70px);
-  background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
-  color: white;
-  flex-shrink: 0;
-  position: sticky;
-  top: 70px;
-  align-self: flex-start;
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
-}
-
 .page-content {
   flex: 1;
   min-width: 0;
   padding: 20px;
   background: #f6f8fc;
+  overflow-x: hidden;
+}
+
+@media (max-width: 1024px) {
+  .layout-container {
+    flex-direction: column;
+  }
+
+  .page-content {
+    width: 100%;
+    padding: 16px;
+  }
 }

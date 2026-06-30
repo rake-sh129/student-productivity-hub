@@ -234,8 +234,8 @@ export default function Dashboard() {
   const recentResources = resourcesFallback.slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-[#f6f8fc]">
-      <div className="mx-auto max-w-[1600px]">
+    <div className="w-full bg-[#f6f8fc]">
+      <div className="w-full px-4 md:px-6">
         <div className="grid grid-cols-1 gap-6 2xl:grid-cols-[minmax(0,1fr)_340px]">
           <section className="min-w-0 space-y-6">
             <div className="flex flex-col gap-2">

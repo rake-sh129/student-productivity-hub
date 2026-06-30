@@ -180,7 +180,7 @@ const Settings = () => {
                     }
                     {
                         (activeTab === 'all' || activeTab === 'data') && (
-                            <DataSettings
+                            <DataSettings onClearData={handleClearData}
                             accentColor={accentColor}/>
                         )
                     }
