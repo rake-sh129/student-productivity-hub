@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import tasksReducer from '../Stores/tasksSlice'
-import notesReducer from "../Stores/notesSlice";
+import tasksReducer from './tasksSlice'
+import notesReducer from "./notesSlice";
 import habitsReducer from "./habitsSlice";
 import pomodoroReducer from "./pomodoroSlice";
+import goalsSlice from './goalsSlice'
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     notes: notesReducer,
     habits: habitsReducer,
     pomodoro: pomodoroReducer,
+    goals:goalsSlice,
   },
 });
 

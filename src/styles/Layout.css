@@ -1,16 +1,25 @@
 .layout-container {
-    display: flex;
-  }
-  
-  /* Sidebar fixed width */
-  .sidebar {
-    width: 220px;
-    height: calc(100vh - 60px);
-    background-color: #1e293b;
-  }
-  
-  /* Page area */
-  .page-content {
-    flex: 1;
-    padding: 20px;
-  }
+  display: flex;
+  min-height: calc(100vh - 70px);
+  background: #f6f8fc;
+}
+
+.sidebar {
+  width: 260px;
+  min-width: 260px;
+  min-height: calc(100vh - 70px);
+  background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+  color: white;
+  flex-shrink: 0;
+  position: sticky;
+  top: 70px;
+  align-self: flex-start;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.page-content {
+  flex: 1;
+  min-width: 0;
+  padding: 20px;
+  background: #f6f8fc;
+}

@@ -1,36 +1,60 @@
-import { NavLink } from "react-router-dom"
-import "./Sidebar.css"
+import { NavLink } from "react-router-dom";
+import {
+  LayoutDashboard,
+  CheckSquare,
+  FileText,
+  Timer,
+  Repeat,
+  Target,
+  BookOpen,
+  Trophy,
+  CalendarDays,
+} from "lucide-react";
+import "./Sidebar.css";
 
+const navItems = [
+  { label: "Dashboard", path: "/", icon: LayoutDashboard },
+  { label: "Tasks", path: "/tasks", icon: CheckSquare },
+  { label: "Notes", path: "/notes", icon: FileText },
+  { label: "Pomodoro", path: "/pomodoro", icon: Timer },
+  { label: "Habits", path: "/habits", icon: Repeat },
+  { label: "Goals", path: "/goals", icon: Target },
+  { label: "Resources", path: "/resources", icon: BookOpen },
+  { label: "Achievement", path: "/achievement", icon: Trophy },
+  { label: "Calendar", path: "/calendar", icon: CalendarDays },
+];
 
 const Sidebar = () => {
   return (
-    <div>
-        <aside className="sidebar">
-            <NavLink to='/' >Dashboard </NavLink>
+    <aside className="sidebar">
+      <nav className="sidebar-nav">
+        {navItems.map((item) => {
+          const Icon = item.icon;
 
-            <NavLink to="tasks" >Tasks </NavLink>
+          return (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              end={item.path === "/"}
+              className={({ isActive }) =>
+                `sidebar-link ${isActive ? "active" : ""}`
+              }
+            >
+              <Icon />
+              <span>{item.label}</span>
+            </NavLink>
+          );
+        })}
+      </nav>
 
-            <NavLink to="notes" >Notes </NavLink>
+      <div className="sidebar-footer">
+        <div className="streak-card">
+          <p>Study Streak 🔥</p>
+          <h3>7 Days</h3>
+        </div>
+      </div>
+    </aside>
+  );
+};
 
-            <NavLink to="pomodoro" >Pomodoro </NavLink>
-
-            <NavLink to="habits" >Habits </NavLink>
-
-            <NavLink to="goals" >Goals </NavLink>
-
-            <NavLink to="resources" >Resources </NavLink>
-
-            <NavLink to="analytics" >Analytics </NavLink>
-
-            <NavLink to="achievement" >Achievement </NavLink>
-
-            <NavLink to="calendar" >Calendar </NavLink>
-
-
-        </aside>
-      
-    </div>
-  )
-}
-
-export default Sidebar
+export default Sidebar;

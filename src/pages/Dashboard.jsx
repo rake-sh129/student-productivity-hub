@@ -1,4 +1,9 @@
-const Dashboard = () => {
-  return <h1>DashBoard 📊</h1>
+import Dashboard from "../features/dashboard/Dashboard"
+
+const DashboardPage = () => {
+  return <div>
+    <Dashboard></Dashboard>
+    {/* <h1>Dashboard</h1> */}
+  </div>
 }
-export default Dashboard
+export default DashboardPage

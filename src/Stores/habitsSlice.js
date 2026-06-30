@@ -37,6 +37,8 @@ const habitsSlice = createSlice({
       } else {
         habit.completedDates.push(todayDate);
       }
+
+      habit.streak = habit.completedDates.length;
     },
   },
 });

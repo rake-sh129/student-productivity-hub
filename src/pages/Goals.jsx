@@ -1,9 +1,8 @@
-function Goals() {
+import Goals from "../features/goals/Goals";
+function GoalsPage() {
     return (
-      <div>
-        <h1>Goals</h1>
-      </div>
+      <Goals/>
     );
   }
   
-  export default Goals;
+  export default GoalsPage;
