@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AppearanceSettings from './AppearanceSettings';
 import AboutSection from './AboutSection'
 import DataSettings from './DataSettings';
@@ -8,8 +8,16 @@ import {Settings as SettingsIcon, Sparkles, Timer, Database, Info, GraduationCap
 
 const Settings = () => {
 
-    const [theme, setTheme] = useState();
-    const [accentColor, setAccentColor] = useState();
+    const [theme, setTheme] = useState(() =>{
+        const savedTheme = localStorage.getItem('sph_theme');
+        return (savedTheme === 'light' || savedTheme === 'dark') ? savedTheme: 'light';
+    });
+
+    const [accentColor, setAccentColor] = useState(() =>{
+        const savedAccent = localStorage.getItem('sph_accent_color');
+        return (savedAccent === 'blue' || savedAccent === 'emerald' || savedAccent === 'amber' || savedAccent === 'rose' || savedAccent === 'slate') ?
+        savedAccent : 'blue';
+    });
 
     const [productivity, setProductivity] = useState(()=>{
         const savedProd = localStorage.getItem('sph_productivity_settings');
@@ -32,11 +40,45 @@ const Settings = () => {
     const [activeTab, setActiveTab] = useState('all');
     const[toastMessage, setToastMessage] = useState(null);
 
+    useEffect(() =>{
+        const rootElement = window.document.documentElement;
+        if( theme === 'dark'){
+            rootElement.classList.add('dark');
+        } else {
+            rootElement.classList.remove('dark');
+        }
+        localStorage.setItem('sph_theme', theme);
+    }, [theme]);
+
+    useEffect(() =>{
+        const rootElement = window.document.documentElement;
+        rootElement.setAttribute('data-accent', accentColor);
+        localStorage.setItem('sph_accent_color', accentColor);
+    }, [accentColor])
+
+
     const handleUpdateProductivity = (newSettings) =>{
         setProductivity((prev) =>({
             ...prev,
             ...newSettings
         }));
+    }
+
+    const handleClearData = () =>{
+        localStorage.removeItem('sph_theme');
+        localStorage.removeItem('sph_accent_color');
+        localStorage.removeItem('sph_productivity_settings');
+
+        setTheme('light');
+        setAccentColor('blue');
+        setProductivity({
+        focusDuration: 25,
+        shortBreak: 5,
+        longBreak: 15,
+        notificationsEnabled: true,
+        autoSaveNotes: true,
+        })
+        triggerToast("Hub configuration reset to default values! 🧹");
     }
 
     const triggerToast = (msg) =>{

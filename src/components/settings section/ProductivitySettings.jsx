@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { Timer, Bell, Clock } from "lucide-react";
 
-const ProductivitySettings = ({accentColor, settings, updateSettings}) => {
+const ProductivitySettings = ({settings, updateSettings}) => {
 
     const handleNumberChange = (key, value) => {
         const numValue = parseInt(value, 10);
@@ -13,66 +14,89 @@ const ProductivitySettings = ({accentColor, settings, updateSettings}) => {
         updateSettings({ [key]: !settings[key]});
     };
   return (
-    <div>
-        <div>
-            <div>Timer</div>
-            <div>
-                <h2>Productivity Timer</h2>
-                <p>Configure your study session durations and automated triggers.</p>
+    <div id="productivity-settings-card" className="settings-card">
+        <div className="card-header-row">
+            <div className="card-header-left">
+                <div><Timer/></div>
+            <div className="card-titles">
+                <h2 className="card-title">Productivity Timer</h2>
+                <p className="card-desc">Configure your study session durations and automated triggers.</p>
+            </div>
             </div>
         </div>
 
-        <div>
-            <h3>Pomodoro Timers</h3>
-            <div>
-                <div>
-                    <label htmlFor="input-focus-duration">Focus</label>
-                    <div>
-                       <input type="number" min="1" max="180" />
-                       <span>Min</span>
+        <div className="timer-inputs-block">
+            <h3 className="section-header"> <Clock/>
+                Pomodoro Timers (Minutes)</h3>
+            <div className="timer-grid">
+                <div className="input-field-group">
+                    <label htmlFor="input-focus-duration" className="input-label">Focus</label>
+                    <div  className="input-wrapper">
+                       <input type="number" min="1" max="180" value={settings.focusDuration}
+                       onChange={(e)=> handleNumberChange('focusDuration', e.target.value)}
+                       id="input-focus-duration" className="input-field"/>
+                       <span className="input-suffix">min</span>
                     </div>
                 </div>
 
-                 <div>
-                    <label htmlFor="input-short-break">Short</label>
-                    <div>
-                        <input type="number" min="1" max="60" />
-                        <span>min</span>
+                 <div className="input-field-group">
+                    <label htmlFor="input-short-break" className="input-label">Short</label>
+                    <div className="input-wrapper">
+                        <input type="number" min="1" max="60"  value={settings.shortBreak}
+                        onChange={(e)=> handleNumberChange('sohrtBreak', e.target.value)}
+                        id="input-short-break" className="input-field"/>
+                        <span className="input-suffix">min</span>
                     </div>
                 </div>
 
-                <div>
-                    <label htmlFor="input-long-break">Long</label>
-                    <div>
-                        <input type="number" min="1" max="120" />
-                        <span>min</span>
+                <div className="input-field-group">
+                    <label htmlFor="input-long-break" className="input-label">Long</label>
+                    <div className="input-wrapper">
+                        <input type="number" min="1" max="120" value={settings.longBreak}
+                        onChange={(e)=> handleNumberChange('longBreak', e.target.value)}
+                        id="input-long-break"  className="input-field" />
+                        <span className="input-suffix">min</span>
                     </div>
                 </div>
             </div>
         </div>
 
+        <hr className="settings-divider"  />
+
         <div>
-            <div>
-                <h3>Hub Automation & Notifications</h3>
-                <div>
-                    <div>
-                        <label htmlFor="toggle-notifications">Desktop Notifications</label>
-                        <span>Ring audio alerts when timer focus cycles complete.</span>
+            <div className="automation-block">
+                <h3 className="section-header"> <Bell/>Hub Automation & Notifications</h3>
+                <div className="toggle-row">
+                    <div className="toggle-text-col">
+                        <label htmlFor="toggle-notifications" className="toggle-label">Desktop Notifications</label>
+                        <span className="toggle-desc">Ring audio alerts when timer focus cycles complete.</span>
                     </div>
 
-                    <button></button>
+                    <button type="button" role="switch"
+                    aria-checked={settings.notificationsEnabled}
+                    onClick={() => handleToggleChange('notificationsEnabled')}
+                    id="toggle-notifications" 
+                    className={`toggle-switch ${settings.notificationsEnabled ? 'active' : ''}`}>
+                        <span className="toggle-knob" />
+                    </button>
                 </div>
 
-                <div>
-                    <div>
-                        <label htmlFor="toggle-autosave">Auto-save Active Sessions</label>
-                        <span>Instantly save workspace journals to local browser cache.</span>
+                <div className="toggle-row">
+                    <div className="toggle-text-col">
+                        <label htmlFor="toggle-autosave" className="toggle-label">Auto-save Active Sessions</label>
+                        <span className="toggle-desc">Instantly save workspace journals to local browser cache.</span>
                     </div>
-                    <button></button>
+                    <button type="button" role="switch"
+                    id="toggle-autosave"
+                    aria-checked={settings.autoSaveNotes}
+                    onClick={() => handleToggleChange('autoSaveNotes')}
+                    className={`toggle-switch ${settings.autoSaveNotes ? 'active' : ''}`}>
+                        <span className="toggle-knob" />
+                    </button>
                 </div>
             </div>
 
-            <div>
+            <div className="tip-box">
                 <p>💡 <strong>React Learnings:</strong>This component shows <strong>Controlled Inputs</strong>in action. The input's value is wired directly to the React prop, and any change triggers the parent callback function seamlessly.</p>
             </div>
         </div>
