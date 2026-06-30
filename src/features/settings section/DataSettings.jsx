@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
 import { Database, Download, Trash2, AlertTriangle} from "lucide-react";
 
 const DataSettings = () => {

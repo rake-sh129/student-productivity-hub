@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import HabitCard from "./HabitsCard";
 import HabitForm from "./HabitsForm";
 import HabitStats from "./HabitsStats";
-import HabitsTip from "./HabitsTip";
+// import HabitsTip from "./HabitsTip";
 import "../../styles/habits.css";
 
 const Habits = () => {
@@ -46,7 +46,7 @@ const Habits = () => {
           </div>
 
           <div className="habits-sidebar">
-            <HabitsTip/>
+            {/* <HabitsTip/> */}
           </div>
         </div>
       </div>

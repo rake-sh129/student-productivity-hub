@@ -1,45 +1,29 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
+/* eslint-disable no-undef */
+const fetchTip = async () => {
+  try {
+    setLoading(true);
 
-const HabitTip = () => {
-  const [tip, setTip] = useState("Loading tip...");
-  const [loading, setLoading] = useState(true);
+    const res = await fetch("https://api.api-ninjas.com/v1/quotes", {
+      headers: {
+        "X-Api-Key": import.meta.env.VITE_API_NINJAS_KEY,
+      },
+    });
 
-  const fetchTip = async () => {
-    try {
-      setLoading(true);
-      const res = await fetch("https://api.adviceslip.com/advice");
-      const data = await res.json();
-      setTip(data?.slip?.advice || "Stay consistent. Small progress matters.");
-    } catch (error) {
-      setTip("Stay consistent. Small progress matters.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    if (!res.ok) throw new Error("Failed to fetch");
 
-  useEffect(() => {
-    fetchTip();
-  }, []);
+    const data = await res.json();
 
-  return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="mb-3 flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-slate-800">Daily Tip</h2>
-        <button
-          onClick={fetchTip}
-          className="rounded-lg bg-emerald-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-emerald-700"
-        >
-          Refresh
-        </button>
-      </div>
-
-      <p className="text-sm leading-6 text-slate-600">
-        {loading ? "Loading tip..." : tip}
-      </p>
-    </div>
-  );
+    setTip(
+      data.length
+        ? `"${data[0].quote}" — ${data[0].author}`
+        : "Stay consistent. Small progress matters."
+    );
+  } catch (error) {
+    setTip("Stay consistent. Small progress matters.");
+  } finally {
+    setLoading(false);
+  }
 };
 
-export default HabitTip;
+export default fetchTip

@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import './styles/global.css'
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter basename="/student-productivity-hub">
+  <BrowserRouter basename="/">
     <Provider store = {store}>
     <App />
     </Provider>
